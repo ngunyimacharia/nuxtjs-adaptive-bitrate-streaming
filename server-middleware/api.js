@@ -46,7 +46,7 @@ app.get('/resources', async (req, res) => {
         .execute();
 
 
-    res.json({ results });
+    res.json(results);
 });
 
 module.exports = app
