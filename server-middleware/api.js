@@ -29,7 +29,11 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         function (result) { console.log(result); }
     );
 
-    res.json({ uploading: true });
+    let backURL = req.header('Referer') || '/';
+
+    backURL += "?uploading=true";
+
+    res.redirect(backURL);
 });
 
 app.get('/resources', async (req, res) => {
