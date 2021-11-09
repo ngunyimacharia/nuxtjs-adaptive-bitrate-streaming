@@ -12,7 +12,16 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://unpkg.com/cloudinary-video-player@1.5.9/dist/cld-video-player.min.css' }
+    ],
+    script: [
+      {
+        src: "https://unpkg.com/cloudinary-core@latest/cloudinary-core-shrinkwrap.min.js",
+      },
+      {
+        src: "https://unpkg.com/cloudinary-video-player@1.5.9/dist/cld-video-player.min.js",
+      },
     ]
   },
 
@@ -35,9 +44,18 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/cloudinary'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  serverMiddleware: [
+    { path: "/api", handler: "~/server-middleware/api.js" },
+  ],
+
+  cloudinary: {
+    cloudName: process.env.NUXT_ENV_CLOUDINARY_CLOUD_NAME
   }
 }
